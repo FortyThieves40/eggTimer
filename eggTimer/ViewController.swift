@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     
     var timer = Timer()
+    var numberOfTimers = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,21 +37,30 @@ class ViewController: UIViewController {
 
         }
         else {
-            
-            timerLabel.text = "210"
+            resetTimer()
         }
+    }
+    
+    func resetTimer(){
         
+        timer.invalidate()
+        timerLabel.text! = "210"
+        numberOfTimers = 0
         
     }
     
     @IBAction func startTimer(_ sender: AnyObject) {
-        
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.timerTick), userInfo: nil, repeats: true)
+
+        if numberOfTimers < 1{
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.timerTick), userInfo: nil, repeats: true)
+        }
+        numberOfTimers = 1
     }
     
     
     @IBAction func pauseTimer(_ sender: AnyObject) {
         timer.invalidate()
+        numberOfTimers = 0
     }
 
     
@@ -62,10 +72,9 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func resetTimer(_ sender: AnyObject) {
+    @IBAction func resetTimerButton(_ sender: AnyObject) {
         
-        timer.invalidate()
-        timerLabel.text! = "210"
+        resetTimer()
         
     }
     
@@ -74,7 +83,6 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 }
 

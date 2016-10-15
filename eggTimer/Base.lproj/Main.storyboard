@@ -38,7 +38,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="6oK-sM-Zq8"/>
                                     <barButtonItem systemItem="refresh" id="aei-rK-orr">
                                         <connections>
-                                            <action selector="resetTimer:" destination="BYZ-38-t0r" id="0DN-vY-Vsx"/>
+                                            <action selector="resetTimerButton:" destination="BYZ-38-t0r" id="UCW-gx-26M"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="AqO-B7-yzb"/>
