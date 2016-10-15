@@ -5,6 +5,7 @@
 //  Created by carole lang on 10/14/16.
 //  Copyright © 2016 Dana Young. All rights reserved.
 //
+//Need to add check again hitting zero
 
 import UIKit
 
@@ -15,6 +16,10 @@ class ViewController: UIViewController {
     
     var timer = Timer()
     var numberOfTimers = 0
+    
+    //adding bools to have deduction happen in timerTick if timer is active to avoid overwritting current value inside of timerLabel
+    var addTenSecPushed = false
+    var minusTenSecPushed = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +36,17 @@ class ViewController: UIViewController {
         if (timerLabel.text != nil){
             
             var convertedTimer = Int(timerLabel.text!)!
-            convertedTimer -= 1
+            if minusTenSecPushed == true, addTenSecPushed == false {
+                convertedTimer -= 10
+                minusTenSecPushed = false
+            }
+            else if minusTenSecPushed == false, addTenSecPushed == true{
+                convertedTimer += 10
+                addTenSecPushed = false
+            }
+            else{
+                convertedTimer -= 1
+            }
             let newString:String! = "\(convertedTimer)"
             timerLabel.text = newString
 
@@ -65,10 +80,32 @@ class ViewController: UIViewController {
 
     
     @IBAction func minusTenSec(_ sender: AnyObject) {
+        
+        if numberOfTimers == 1 {
+            minusTenSecPushed = true
+        }
+        else {
+            var convertedTimer = Int(timerLabel.text!)!
+            convertedTimer -= 10
+            let newString:String! = "\(convertedTimer)"
+            timerLabel.text = newString
+        }
+        
     }
     
 
     @IBAction func addTenSec(_ sender: AnyObject) {
+        
+        if numberOfTimers == 1 {
+            addTenSecPushed = true
+        }
+        else {
+            var convertedTimer = Int(timerLabel.text!)!
+            convertedTimer += 10
+            let newString:String! = "\(convertedTimer)"
+            timerLabel.text = newString
+        }
+        
     }
     
     
