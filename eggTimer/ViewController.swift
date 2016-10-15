@@ -25,9 +25,9 @@ class ViewController: UIViewController {
         //print("A second has passed...")
         if (timerLabel.text != nil){
             
-            var convertedTimer = Int(timerLabel.text!)
-            convertedTimer! -= 1
-            let newString = String(describing: convertedTimer)
+            var convertedTimer = Int(timerLabel.text!)!
+            convertedTimer -= 1
+            let newString:String! = "\(convertedTimer)"
             timerLabel.text = newString
 
         }
