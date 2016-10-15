@@ -20,6 +20,10 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
     
+    deinit {
+        timer.invalidate()
+    }
+    
     func timerTick(){
         
         //print("A second has passed...")
