@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="eggTimer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pjp-8Q-OhP">
+                                <frame key="frameInset" minY="27" height="44"/>
+                                <items>
+                                    <navigationItem title="Egg Timer!" id="lZR-KT-djl">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="play" id="qjz-aK-eFX"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="pause" id="Clo-nW-NXb"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="glowingEgg" translatesAutoresizingMaskIntoConstraints="NO" id="P7N-CM-wE9">
+                                <color key="backgroundColor" red="0.063660688698291779" green="0.019493216648697853" blue="0.014962742105126381" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2YJ-ms-ZjI">
+                                <frame key="frameInset" height="44"/>
+                                <items>
+                                    <barButtonItem title="-10s" id="Lzh-X3-zIQ">
+                                        <color key="tintColor" red="0.98743027448654175" green="0.16330784559249878" blue="0.011042818427085876" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="6oK-sM-Zq8"/>
+                                    <barButtonItem systemItem="refresh" id="aei-rK-orr"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="AqO-B7-yzb"/>
+                                    <barButtonItem title="+10s" id="HtM-Es-x9c">
+                                        <color key="tintColor" red="0.040265373885631561" green="0.93047773838043213" blue="0.048053309321403503" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="210" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqM-jp-nFw">
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="P7N-CM-wE9" secondAttribute="trailing" id="2Xx-fE-dqg"/>
+                            <constraint firstItem="gqM-jp-nFw" firstAttribute="centerX" secondItem="pjp-8Q-OhP" secondAttribute="centerX" id="7iC-Rv-g2p"/>
+                            <constraint firstItem="gqM-jp-nFw" firstAttribute="centerX" secondItem="P7N-CM-wE9" secondAttribute="centerX" id="JIB-2y-NSy"/>
+                            <constraint firstItem="gqM-jp-nFw" firstAttribute="centerY" secondItem="P7N-CM-wE9" secondAttribute="centerY" id="LlK-ZP-B9d"/>
+                            <constraint firstItem="P7N-CM-wE9" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="84" id="PNw-qi-Lys"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="P7N-CM-wE9" secondAttribute="leading" id="dPs-8p-BuP"/>
+                            <constraint firstItem="gqM-jp-nFw" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-15" id="dk0-P5-vNX"/>
+                            <constraint firstItem="gqM-jp-nFw" firstAttribute="centerX" secondItem="2YJ-ms-ZjI" secondAttribute="centerX" id="e82-hE-N6w"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="P7N-CM-wE9" secondAttribute="bottom" constant="59" id="wA2-94-bcs"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="115.94202898550725" y="123.91304347826087"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="glowingEgg" width="138" height="138"/>
+    </resources>
+</document>

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "glowingEgg-2.jpg",
+      "filename" : "glowingEgg.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "glowingEgg.jpg",
+      "filename" : "glowingEgg-1.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "glowingEgg-1.jpg",
+      "filename" : "glowingEgg-2.jpg",
       "scale" : "3x"
     }
   ],
