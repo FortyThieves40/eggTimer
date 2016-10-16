@@ -8,6 +8,7 @@
 //Need to add check again hitting zero
 
 import UIKit
+import AVFoundation
 
 class ViewController: UIViewController {
 
@@ -15,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var timerLabel: UILabel!
     
     var timer = Timer()
+    // counter to ensure no more than one timer is running at any given point
     var numberOfTimers = 0
     
     //adding bools to have deduction happen in timerTick if timer is active to avoid overwritting current value inside of timerLabel
@@ -36,20 +38,35 @@ class ViewController: UIViewController {
         if (timerLabel.text != nil){
             
             var convertedTimer = Int(timerLabel.text!)!
-            if minusTenSecPushed == true, addTenSecPushed == false {
-                convertedTimer -= 10
-                minusTenSecPushed = false
+            if convertedTimer >= 1 {
+                if minusTenSecPushed == true, addTenSecPushed == false {
+                    // added if to account to below zero issue
+                    if convertedTimer > 10 {
+                        minusTenSecPushed = false
+                        convertedTimer -= 10
+                        
+                    }
+                    else {
+                        // add end timer func here
+                        minusTenSecPushed = false
+                        endOfTimerEvent()
+                        return
+                    }
+                }
+                else if minusTenSecPushed == false, addTenSecPushed == true{
+                    addTenSecPushed = false
+                    convertedTimer += 10
+                
+                }
+                else{
+                    convertedTimer -= 1
+                }
+                let newString:String! = "\(convertedTimer)"
+                timerLabel.text = newString
             }
-            else if minusTenSecPushed == false, addTenSecPushed == true{
-                convertedTimer += 10
-                addTenSecPushed = false
+            else if convertedTimer <= 0{
+                endOfTimerEvent()
             }
-            else{
-                convertedTimer -= 1
-            }
-            let newString:String! = "\(convertedTimer)"
-            timerLabel.text = newString
-
         }
         else {
             resetTimer()
@@ -64,9 +81,25 @@ class ViewController: UIViewController {
         
     }
     
+    // call inside of timeTick
+    func endOfTimerEvent(){
+        
+        if numberOfTimers == 1 {
+            
+            timer.invalidate()
+            numberOfTimers = 0
+            //add sound event on end of alarm
+        }
+        let newString:String! = "0"
+        timerLabel.text! = newString!
+        
+        //have text flash red when alarm is completed
+        /*UIView.transition(with: timerLabel, duration: 0.3, options: .transitionCrossDissolve, animations: {self.timerLabel.textColor = UIColor.red}, completion: nil)*/
+    }
+    
     @IBAction func startTimer(_ sender: AnyObject) {
 
-        if numberOfTimers < 1{
+        if numberOfTimers < 1 {
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.timerTick), userInfo: nil, repeats: true)
         }
         numberOfTimers = 1
@@ -86,9 +119,14 @@ class ViewController: UIViewController {
         }
         else {
             var convertedTimer = Int(timerLabel.text!)!
-            convertedTimer -= 10
-            let newString:String! = "\(convertedTimer)"
-            timerLabel.text = newString
+            if convertedTimer >= 10 {
+                convertedTimer -= 10
+                let newString:String! = "\(convertedTimer)"
+                timerLabel.text = newString
+            }
+            else if convertedTimer >= 1, convertedTimer <= 9{
+                endOfTimerEvent()
+            }
         }
         
     }
@@ -110,9 +148,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func resetTimerButton(_ sender: AnyObject) {
-        
         resetTimer()
-        
     }
     
     
