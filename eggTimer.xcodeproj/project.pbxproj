@@ -8,7 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F61603581DB2B13100BC944B /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61603571DB2B13100BC944B /* AVFoundation.framework */; };
-		F616035A1DB2C08200BC944B /* final-countdown-trim.wav in Resources */ = {isa = PBXBuildFile; fileRef = F61603591DB2C08200BC944B /* final-countdown-trim.wav */; };
+		F61AFD331DB6CB1D005EE0DD /* end-of-the-line.wav in Resources */ = {isa = PBXBuildFile; fileRef = F61AFD311DB6CB1D005EE0DD /* end-of-the-line.wav */; };
+		F61AFD341DB6CB1D005EE0DD /* final-countdown-trim.wav in Resources */ = {isa = PBXBuildFile; fileRef = F61AFD321DB6CB1D005EE0DD /* final-countdown-trim.wav */; };
 		F68C1BAA1DB1D23A006D8AEA /* glowingEgg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F68C1BA91DB1D23A006D8AEA /* glowingEgg.jpg */; };
 		F6A7CF351DB1816800E533A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A7CF341DB1816800E533A7 /* AppDelegate.swift */; };
 		F6A7CF371DB1816800E533A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A7CF361DB1816800E533A7 /* ViewController.swift */; };
@@ -19,7 +20,8 @@
 
 /* Begin PBXFileReference section */
 		F61603571DB2B13100BC944B /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		F61603591DB2C08200BC944B /* final-countdown-trim.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "final-countdown-trim.wav"; sourceTree = SOURCE_ROOT; };
+		F61AFD311DB6CB1D005EE0DD /* end-of-the-line.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "end-of-the-line.wav"; sourceTree = "<group>"; };
+		F61AFD321DB6CB1D005EE0DD /* final-countdown-trim.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "final-countdown-trim.wav"; sourceTree = "<group>"; };
 		F68C1BA91DB1D23A006D8AEA /* glowingEgg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = glowingEgg.jpg; path = Assets.xcassets/glowingEgg.jpg; sourceTree = "<group>"; };
 		F6A7CF311DB1816800E533A7 /* eggTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = eggTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6A7CF341DB1816800E533A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -50,6 +52,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F61AFD301DB6CB1D005EE0DD /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				F61AFD311DB6CB1D005EE0DD /* end-of-the-line.wav */,
+				F61AFD321DB6CB1D005EE0DD /* final-countdown-trim.wav */,
+			);
+			path = sound;
+			sourceTree = "<group>";
+		};
 		F6A7CF281DB1816800E533A7 = {
 			isa = PBXGroup;
 			children = (
@@ -70,12 +81,12 @@
 		F6A7CF331DB1816800E533A7 /* eggTimer */ = {
 			isa = PBXGroup;
 			children = (
+				F61AFD301DB6CB1D005EE0DD /* sound */,
 				F6A7CF341DB1816800E533A7 /* AppDelegate.swift */,
 				F6A7CF361DB1816800E533A7 /* ViewController.swift */,
 				F6A7CF381DB1816800E533A7 /* Main.storyboard */,
 				F6A7CF3B1DB1816800E533A7 /* Assets.xcassets */,
 				F68C1BA91DB1D23A006D8AEA /* glowingEgg.jpg */,
-				F61603591DB2C08200BC944B /* final-countdown-trim.wav */,
 				F6A7CF3D1DB1816800E533A7 /* LaunchScreen.storyboard */,
 				F6A7CF401DB1816800E533A7 /* Info.plist */,
 			);
@@ -142,10 +153,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F6A7CF3F1DB1816800E533A7 /* LaunchScreen.storyboard in Resources */,
+				F61AFD341DB6CB1D005EE0DD /* final-countdown-trim.wav in Resources */,
 				F6A7CF3C1DB1816800E533A7 /* Assets.xcassets in Resources */,
 				F6A7CF3A1DB1816800E533A7 /* Main.storyboard in Resources */,
-				F616035A1DB2C08200BC944B /* final-countdown-trim.wav in Resources */,
 				F68C1BAA1DB1D23A006D8AEA /* glowingEgg.jpg in Resources */,
+				F61AFD331DB6CB1D005EE0DD /* end-of-the-line.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

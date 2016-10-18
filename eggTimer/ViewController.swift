@@ -12,9 +12,10 @@ import AVFoundation
 
 class ViewController: UIViewController {
 
-
-    @IBOutlet weak var timerLabel: UILabel!
+    var arrayOfSounds = ["final-countdown-trim", "end-of-the-line"]
+    var audioPlayer: AVAudioPlayer = AVAudioPlayer()
     
+    @IBOutlet weak var timerLabel: UILabel!
     var timer = Timer()
     // counter to ensure no more than one timer is running at any given point
     var numberOfTimers = 0
@@ -40,7 +41,7 @@ class ViewController: UIViewController {
             var convertedTimer = Int(timerLabel.text!)!
             if convertedTimer >= 1 {
                 if minusTenSecPushed == true, addTenSecPushed == false {
-                    // added if to account to below zero issue
+                    // added if to account for below zero issue
                     if convertedTimer > 10 {
                         minusTenSecPushed = false
                         convertedTimer -= 10
@@ -81,13 +82,34 @@ class ViewController: UIViewController {
         
     }
     
+    func setupAudioPlayerWithFile(file: NSString, type: NSString) -> AVAudioPlayer? {
+        
+        let path = Bundle.main.path(forResource: file as String, ofType: type as String)
+        let url = NSURL.fileURL(withPath: path!)
+        
+        var audioPlayer : AVAudioPlayer?
+        
+        do {
+            try audioPlayer = AVAudioPlayer(contentsOf: url)
+        } catch {
+            print("Player not available")
+        }
+        return audioPlayer
+    }
+    
     // call inside of timeTick
     func endOfTimerEvent(){
         
+        //let url = NSURL(fileURLWithPath: Bundle.main.path(forResource: "sound", ofType: "wav")!)
         if numberOfTimers == 1 {
             timer.invalidate()
             numberOfTimers = 0
             //add sound event on end of alarm
+            let range: UInt32 = UInt32(arrayOfSounds.count)
+            let number = Int(arc4random_uniform(range))
+            //FIND OUT WHICH SOUND HERE
+            let sound = self.setupAudioPlayerWithFile(file: arrayOfSounds[number] as NSString, type: "wav")!
+            sound.play()
         }
         
         timerLabel.text! = "0"
