@@ -12,7 +12,7 @@ import AVFoundation
 
 class ViewController: UIViewController {
 
-    
+
     @IBOutlet weak var timerLabel: UILabel!
     
     var timer = Timer()
@@ -85,17 +85,26 @@ class ViewController: UIViewController {
     func endOfTimerEvent(){
         
         if numberOfTimers == 1 {
-            
             timer.invalidate()
             numberOfTimers = 0
             //add sound event on end of alarm
         }
-        let newString:String! = "0"
-        timerLabel.text! = newString!
         
-        //have text flash red when alarm is completed
-        /*UIView.transition(with: timerLabel, duration: 0.3, options: .transitionCrossDissolve, animations: {self.timerLabel.textColor = UIColor.red}, completion: nil)*/
+        timerLabel.text! = "0"
+        timerLabel.blink()
+        let when = DispatchTime.now() + 3 // change 3 to desired number of seconds
+        DispatchQueue.main.asyncAfter(deadline: when) {
+            print("stop blinking")
+            self.timerLabel.stopBlink()
+        }
+        
+        let setLabelDelay = DispatchTime.now() + 3.5 // change 3.5 to desired number of seconds
+        DispatchQueue.main.asyncAfter(deadline: setLabelDelay) {
+            print("bring back 0")
+            self.timerLabel.alpha = 1.0
+        }
     }
+    
     
     @IBAction func startTimer(_ sender: AnyObject) {
 
@@ -128,7 +137,6 @@ class ViewController: UIViewController {
                 endOfTimerEvent()
             }
         }
-        
     }
     
 
@@ -143,7 +151,6 @@ class ViewController: UIViewController {
             let newString:String! = "\(convertedTimer)"
             timerLabel.text = newString
         }
-        
     }
     
     
@@ -158,4 +165,24 @@ class ViewController: UIViewController {
     }
 
 }
+
+extension UILabel {
+    func blink() {
+            self.textColor = UIColor.red
+            self.alpha = 0.0;
+            UIView.animate(withDuration: 0.5,
+            delay: 0.0,
+            options: [.curveEaseInOut, .autoreverse, .repeat],
+            animations: { [weak self] in self?.alpha = 1.0 },
+            completion: { [weak self] _ in self?.alpha = 0.0 })
+    }
+}
+
+extension UILabel {
+    func stopBlink() {
+        layer.removeAllAnimations()
+        self.textColor = UIColor.black
+    }
+}
+
 
