@@ -70,7 +70,7 @@ class ViewController: UIViewController {
             }
         }
         else {
-            resetTimer()
+            resetTimer() //
         }
     }
     
@@ -91,7 +91,8 @@ class ViewController: UIViewController {
         
         do {
             try audioPlayer = AVAudioPlayer(contentsOf: url)
-        } catch {
+        }
+        catch {
             print("Player not available")
         }
         return audioPlayer
@@ -104,25 +105,20 @@ class ViewController: UIViewController {
         if numberOfTimers == 1 {
             timer.invalidate()
             numberOfTimers = 0
-            //add sound event on end of alarm
-            let range: UInt32 = UInt32(arrayOfSounds.count)
-            let number = Int(arc4random_uniform(range))
-            //FIND OUT WHICH SOUND HERE
-            let sound = self.setupAudioPlayerWithFile(file: arrayOfSounds[number] as NSString, type: "wav")!
-            sound.play()
         }
         
         timerLabel.text! = "0"
         timerLabel.blink()
+        audioPlayer.play()
         let when = DispatchTime.now() + 3 // change 3 to desired number of seconds
         DispatchQueue.main.asyncAfter(deadline: when) {
-            print("stop blinking")
+            //print("stop blinking")
             self.timerLabel.stopBlink()
         }
         
         let setLabelDelay = DispatchTime.now() + 3.5 // change 3.5 to desired number of seconds
         DispatchQueue.main.asyncAfter(deadline: setLabelDelay) {
-            print("bring back 0")
+            //print("bring back 0")
             self.timerLabel.alpha = 1.0
         }
     }
@@ -132,6 +128,12 @@ class ViewController: UIViewController {
 
         if numberOfTimers < 1 {
             timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.timerTick), userInfo: nil, repeats: true)
+            let range: UInt32 = UInt32(arrayOfSounds.count)
+            let number = Int(arc4random_uniform(range))
+            //Select sound file from array
+            let sound = self.setupAudioPlayerWithFile(file: arrayOfSounds[number] as NSString, type: "wav")!
+            sound.prepareToPlay()
+            audioPlayer = sound
         }
         numberOfTimers = 1
     }
@@ -149,15 +151,15 @@ class ViewController: UIViewController {
             minusTenSecPushed = true
         }
         else {
-            var convertedTimer = Int(timerLabel.text!)!
-            if convertedTimer >= 10 {
+                var convertedTimer = Int(timerLabel.text!)!
+                if convertedTimer >= 10 {
                 convertedTimer -= 10
                 let newString:String! = "\(convertedTimer)"
                 timerLabel.text = newString
-            }
-            else if convertedTimer >= 1, convertedTimer <= 9{
-                endOfTimerEvent()
-            }
+                }
+                else if convertedTimer >= 1, convertedTimer <= 9{
+                timerLabel.text! = "0"
+                }
         }
     }
     
@@ -178,6 +180,7 @@ class ViewController: UIViewController {
     
     @IBAction func resetTimerButton(_ sender: AnyObject) {
         resetTimer()
+        audioPlayer.stop()
     }
     
     
